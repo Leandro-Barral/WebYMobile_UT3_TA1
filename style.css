@@ -1,0 +1,402 @@
+#barra {
+    background-color: rgb(12, 64, 12);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-top: 30px;
+}
+
+body.light-mode {
+    background-color: #ffffff;
+}
+
+body.light-mode .box {
+    background-color: rgba(204, 221, 197, 0.632);
+}
+
+#buttonsContainer {
+    display: flex;
+}
+
+#logo-container {
+    display: flex;
+    align-items: center;
+}
+
+#fotologo {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    filter: invert(1);
+}
+
+#titulo {
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: "Moderustic", sans-serif;
+}
+
+#botones-container {
+    display: flex;
+    align-items: center;
+}
+
+#btn-desktop,
+#modo-oscuro {
+    background-color: rgb(63, 167, 63);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#btn-desktop:hover,
+#modo-oscuro:hover {
+    background-color: green;
+}
+
+#modo-oscuro {
+    width: 50px;
+    height: 50px;
+    background-color: grey;
+    background-image: url('luna.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#modo-oscuro.light-mode {
+    background-image: url('sol.png');
+}
+
+#modo-oscuro:hover {
+    background-color: rgb(177, 188, 177);
+}
+
+.section {
+    min-width: 100%;
+    min-height: 100%;
+}
+
+h1 {
+    font-family: "Moderustic", sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+}
+
+.title {
+    color: white;
+}
+
+.subtitle {
+    color: white;
+    margin-top: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    /* Centra horizontalmente el contenido */
+    align-items: center;
+    /* Centra verticalmente el contenido */
+    flex-direction: column;
+    /* Asegura que los elementos hijos se apilen verticalmente */
+    height: 100vh;
+    /* Asegura que ocupe toda la altura de la ventana */
+}
+
+/* Estilo para las columnas con scroll */
+.columns-container {
+    display: flex;
+    height: 100vh;
+    /* Ocupa todo el alto de la ventana */
+    justify-content: center;
+}
+
+.column {
+    height: 100%;
+    /* Asegura que cada columna ocupe el 100% de la altura del contenedor */
+    overflow-y: auto;
+    /* Permite desplazamiento vertical si el contenido excede la altura */
+    flex: 1;
+    /* Hace que cada columna ocupe el mismo ancho */
+}
+
+.box {
+    background-color: var(--light-background);
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centrar horizontalmente */
+    justify-content: flex-start;
+    /* Alinear contenido hacia la parte superior */
+    text-align: center;
+    max-height: 500px;
+}
+
+.task {
+    padding: 10px;
+    text-align: left;
+    background-color: var(--very-light-background);
+    /* Color de fondo ligeramente más claro */
+    border-radius: 8px;
+    width: 100%;
+    margin-bottom: 20px;
+    position: relative;
+
+}
+
+#add-task-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgb(63, 186, 63);
+    color: rgb(248, 244, 244);
+    font-size: 30px;
+    border: none;
+    cursor: pointer;
+    /* Cambia el cursor al pasar sobre el botón */
+    outline: none;
+}
+
+#add-task-btn:hover {
+    background-color: green;
+    /* Color más oscuro al pasar el ratón */
+}
+
+body.light-mode .subtitle {
+    color: rgb(0, 0, 0);
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+.modal-card-foot {
+    display: flex;
+    justify-content: space-between;
+    /* Alinea todo a la derecha */
+}
+
+#cancel-task-btn {
+    margin-left: 0;
+    /* Empuja el botón a la derecha */
+    margin-right: 0;
+}
+
+.task-title,
+.task-assigned,
+.task-priority,
+.task-due-date,
+.task-description {
+    color: var(--font-color)
+}
+
+/* Estilo para pantallas medianas: wrap de columnas */
+@media (min-width: 768px) {
+    #add-task-btn {
+        display: none;
+        background-color: green;
+    }
+
+    #btn-desktop {
+        display: block;
+        background-color: rgb(17, 144, 17);
+    }
+
+    #btn-desktop:hover {
+        background-color: rgb(4, 83, 4);
+    }
+
+    .columns-container {
+        display: flex;
+        flex-wrap: wrap;
+        /* Permite que las columnas se muevan a la siguiente fila si es necesario */
+        justify-content: center;
+        /* Centra las columnas en la fila */
+    }
+
+    .column {
+        flex: 1 0 calc(33.333% - 20px);
+        /* Cada columna ocupa un tercio del ancho de la fila */
+
+        min-width: 300px;
+        /* Evita que las columnas sean demasiado pequeñas */
+    }
+}
+
+@media (min-width: 1440px) {
+
+    .container {
+        min-width: 90vw;
+        min-height: 100%;
+    }
+
+    .columns-container {
+        display: flex;
+        flex-wrap: nowrap;
+        /* No permite que las columnas se muevan a la siguiente fila */
+        overflow-x: scroll;
+        /* Activa el scroll horizontal */
+        scroll-snap-type: x mandatory;
+        /* Hace que el scroll "encaje" en las columnas */
+        width: 100%;
+        /* Asegura que ocupe todo el ancho de la pantalla */
+        padding-bottom: 20px;
+        /* Asegura que el contenido tenga espacio suficiente abajo */
+        margin: 20px;
+        /* Elimina márgenes que puedan causar desplazamiento */
+        justify-content: flex-start;
+        /* Justifica el contenido */
+    }
+
+    .column {
+        min-width: calc(100% / 3);
+        /* Asegura que cada columna ocupe un tercio del ancho de la pantalla */
+        scroll-snap-align: end;
+        /* Hace que las columnas "encajen" al hacer scroll */
+        margin: 0;
+        /* Elimina márgenes que puedan afectar el scroll */
+        box-sizing: border-box;
+        /* Asegura que el padding y el borde se incluyan en el ancho total */
+    }
+
+    body {
+        min-height: 100vh;
+        background-color: var(--background-color);
+    }
+
+    /* Asegúrate de que el contenedor ocupe todo el alto y tenga fondo */
+    .section {
+        padding: 0;
+        min-height: 100%;
+    }
+
+    #save-task-btn {
+        background-color: rgb(84, 203, 84);
+        color: white;
+    }
+
+    #save-task-btn:hover {
+        background-color: green;
+    }
+
+    /* Estilo para los botones en el pie del modal */
+    .modal-card-foot .button {
+        margin-right: 40px;
+    }
+
+    #save-task-btn {
+        background-color: rgb(86, 208, 86);
+        color: white;
+    }
+
+    #save-task-btn:hover {
+        background-color: green;
+    }
+
+    .deleteButton {
+        width: 35px;
+        height: 35px;
+        background-color: gray;
+        background-image: url('basurero.png');
+        background-size: cover;
+        background-position: center;
+        border-radius: 8px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+}
+
+@media (max-width: 1440px) {
+    @media (min-width: 768px) {
+        .deleteButton {
+            width: 35px;
+            height: 35px;
+            background-color: gray;
+            background-image: url('basurero.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    }
+}
+
+/*Configuracion para las pantallas chicas*/
+@media (max-width: 768px) {
+
+    /* Para pantallas chicas: las columnas se alinean una debajo de la otra */
+    .columns-container {
+        flex-direction: column;
+        height: auto;
+        /* Elimina la altura fija */
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    .column {
+        width: auto;
+        /* Cada columna ocupará el 100% del ancho de la pantalla */
+        min-width: auto;
+        /* Asegura que la columna se ajuste al ancho disponible */
+        margin-bottom: 20px;
+        /* Añade un margen entre las columnas */
+    }
+
+    #add-task-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: rgb(63, 186, 63);
+        color: rgb(248, 244, 244);
+        font-size: 30px;
+        border: none;
+        cursor: pointer;
+        /* Cambia el cursor al pasar sobre el botón */
+        outline: none;
+        text-align: center;
+        /* No es estrictamente necesario con flexbox */
+    }
+
+    #btn-desktop {
+        display: none;
+        /* Oculta el botón de escritorio en celulares */
+    }
+
+    .deleteButton {
+        width: 35px;
+        height: 35px;
+        background-color: gray;
+        background-image: url('basurero.png');
+        background-size: cover;
+        background-position: center;
+        border-radius: 8px;
+        position: absolute;
+        bottom: 13px;
+        right: 10px;
+    }
+}

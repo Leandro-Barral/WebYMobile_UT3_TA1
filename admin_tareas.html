@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Tareas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Moderustic:wght@300..800&display=swap" rel="stylesheet">
+    <script defer src="script.js"></script>
+    <link id="icono" rel="icon" href="white-task.png" type="image/x-icon">
+</head>
+
+<body>
+    <section class="section">
+        <div class="container">
+            <div id="barra">
+                <div id="logo-container">
+                    <img id="fotologo" src="task.png" alt="Logo">
+                    <div id="titulo">Gestor de Tareas</div>
+                </div>
+                <div id="buttonsContainer">
+                    <button id="btn-desktop" class="button is-rounded">
+                        Agregar Tarea
+                    </button>
+                    <button type="button" id="modo-oscuro"></button>
+                </div>
+            </div>
+
+            <div class="columns-container">
+                <div class="column">
+                    <div class="box">
+                        <h2 class="subtitle">Backlog</h2>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="box">
+                        <h2 class="subtitle">To Do</h2>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="box">
+                        <h2 class="subtitle">In Progress</h2>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="box">
+                        <h2 class="subtitle">Blocked</h2>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="box">
+                        <h2 class="subtitle">Done</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Botón para agregar una nueva tarea -->
+    <button id="add-task-btn" class="button is-success is-fullwidth">+</button>
+
+    <!-- Modal para crear/editar tarea -->
+    <div id="task-modal" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Nueva Tarea</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <form id="task-form">
+                    <div class="field">
+                        <label class="label">Título *</label>
+                        <div class="control">
+                            <input class="input" type="text" id="task-title" placeholder="Título de la tarea" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Descripción</label>
+                        <div class="control">
+                            <textarea class="textarea" id="task-description"
+                                placeholder="Descripción de la tarea" required></textarea>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Asignado</label>
+                        <div class="control">
+                            <div class="select">
+                                <select id="task-assigned" required>
+                                    <option value="Asignado 1">Asignado 1</option>
+                                    <option value="Asignado 2">Asignado 2</option>
+                                    <option value="Asignado 3">Asignado 3</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Prioridad</label>
+                        <div class="control">
+                            <div class="select">
+                                <select id="task-priority" required>
+                                    <option value="Alta">Alta</option>
+                                    <option value="Media">Media</option>
+                                    <option value="Baja">Baja</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Estado</label>
+                        <div class="control">
+                            <div class="select">
+                                <select id="task-status" required>
+                                    <option value="Backlog">Backlog</option>
+                                    <option value="To Do">To Do</option>
+                                    <option value="In Progress">In Progress</option>
+                                    <option value="Blocked">Blocked</option>
+                                    <option value="Done">Done</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Fecha límite</label>
+                        <div class="control">
+                            <input class="input" type="date" id="task-due-date" required>
+                        </div>
+                    </div>
+                    <input type="submit" class="button is-success" id="save-task-btn" value="Guardar">
+                </form>
+            </section>
+            <footer class="modal-card-foot">
+                
+                <p id="mensajeError"></p>
+                <button class="button" id="cancel-task-btn">Cancelar</button>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>
