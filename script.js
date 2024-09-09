@@ -6,7 +6,7 @@ const saveTaskBtn = document.getElementById('save-task-btn');
 const taskForm = document.getElementById('task-form');
 const darkMode = document.getElementById('modo-oscuro');
 let editingTask = null;
-let mode = "Light";
+let mode = "Light";                   
 let tasks = [];
 
 //Get Tasks
@@ -33,10 +33,6 @@ postTask = async (task) => {
               },
             body: JSON.stringify(task)
         });
-        if(response.ok){
-            tasks = await response.json();
-            console.log(tasks); 
-        }
     }
     catch(error){
         console.log(error);
@@ -127,8 +123,8 @@ async function renderTasks(){
 
                 // Añadir evento de clic para eliminar la tarea
                 taskCard.querySelector('.deleteButton').addEventListener('click', async function (event) {
-                    event.stopPropagation(); // Prevenir que se dispare el evento de editar tarea
-                    await deleteTask(task); // Eliminar la tarjeta de tarea del DOM
+                    event.stopPropagation();
+                    await deleteTask(task);
                     renderTasks();
                 });
 
@@ -186,16 +182,9 @@ saveTaskBtn.addEventListener('click', async () => {
 });
 
 
-// Agregamos un event listener para el botón de modo oscuro
 document.getElementById("modo-oscuro").addEventListener("click", function () {
-    // Alterna entre las clases 'light-mode' y 'dark-mode' (por defecto sin la clase es modo oscuro)
     document.body.classList.toggle("light-mode");
-
-    if (document.body.classList.contains("light-mode")) {
-        this.classList.add("light-mode");  // Cambia la imagen del botón para modo claro
-    } else {
-        this.classList.remove("light-mode");  // Cambia la imagen del botón para modo oscuro
-    }
+    darkMode.classList.toggle("light-mode");
 });
 
 // Abrir modal para editar tarea
@@ -212,37 +201,50 @@ function openTaskModalForEditing(taskId, taskData) {
 }
 
 
-// Modo Oscuro
+// Función de Cambio de Modo Claro/Oscuro
 function changeMode() {
     if (mode === "Light") {
 
-        document.documentElement.style.setProperty("--background-color", "#121212");
-        document.documentElement.style.setProperty("--font-color", "white");
-        document.documentElement.style.setProperty("--primary-color", "rgb(52, 154, 52)");
-        document.documentElement.style.setProperty("--light-background", "#1e1e1e");
-        document.documentElement.style.setProperty("--very-light-background", "#333333");
-        document.documentElement.style.setProperty("--create-task-button", "#99e9f2");
-        document.documentElement.style.setProperty("--create-task-", "#7bbcc4");
+        // Modo oscuro
+        document.documentElement.style.setProperty("--bar-color", "rgb(10, 44, 10)"); // Un verde más oscuro para la barra
+        document.documentElement.style.setProperty("--title-color", "white");
+        document.documentElement.style.setProperty("--background-color", "#121212"); // Fondo oscuro
+        document.documentElement.style.setProperty("--font-color", "white"); // Texto blanco en modo oscuro
+        document.documentElement.style.setProperty("--primary-color", "rgb(32, 102, 102)"); // Un tono más oscuro de verde-azulado
+        document.documentElement.style.setProperty("--light-background", "#1e1e1e"); // Fondo ligeramente menos oscuro
+        document.documentElement.style.setProperty("--very-light-background", "#333333"); // Fondo gris claro para contraste
+        document.documentElement.style.setProperty("--create-task-button", "rgb(12, 100, 12)"); // Botón verde oscuro
+        document.documentElement.style.setProperty("--create-task-hover", "rgb(8, 72, 8)"); // Hover más oscuro
+        document.documentElement.style.setProperty("--dark-mode-color", "yellow"); // Un gris claro para el icono del modo oscuro
+        document.documentElement.style.setProperty("--dark-mode-hover", "gold"); // Un gris medio para hover
+        document.documentElement.style.setProperty("--delete-btn-color", "darkgrey"); // Botón de eliminar gris oscuro
+        document.documentElement.style.setProperty("--delete-btn-hover", "darkred"); // Hover rojo oscuro
 
         mode = "Dark";
-    }
-    else {
+    } else {
 
+        // Modo claro
+        document.documentElement.style.setProperty("--bar-color", "rgb(12, 64, 12)");
+        document.documentElement.style.setProperty("--title-color", "white");
         document.documentElement.style.setProperty("--background-color", "#e8e8e8");
         document.documentElement.style.setProperty("--font-color", "black");
         document.documentElement.style.setProperty("--primary-color", "rgb(52, 52, 154)");
         document.documentElement.style.setProperty("--light-background", "#efefef");
         document.documentElement.style.setProperty("--very-light-background", "#f8f8f8");
-        document.documentElement.style.setProperty("--create-task-button", "#99e9f2");
-        document.documentElement.style.setProperty("--create-task-hover", "#7bbcc4");
+        document.documentElement.style.setProperty("--create-task-button", "rgb(17, 144, 17)");
+        document.documentElement.style.setProperty("--create-task-hover", "rgb(4, 83, 4)");
+        document.documentElement.style.setProperty("--dark-mode-color", "grey");
+        document.documentElement.style.setProperty("--dark-mode-hover", "rgb(177, 188, 177)");
+        document.documentElement.style.setProperty("--delete-btn-color", "grey");
+        document.documentElement.style.setProperty("--delete-btn-hover", "red");
 
         mode = "Light";
     }
 }
 
+
 darkMode.addEventListener('click', () => {
     changeMode();
 });
 
-changeMode();
 renderTasks();
