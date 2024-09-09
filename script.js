@@ -75,6 +75,34 @@ deleteTask = async (task) => {
     }
 }
 
+// Events Listeners de DragOver y Drop en las Columnas
+document.querySelectorAll('.box').forEach(column => {
+    column.addEventListener('dragover', (event) => {
+        event.preventDefault();
+    });
+
+    column.addEventListener('dragenter', (event) => {
+        column.classList.add('drag-over');
+    });
+
+    column.addEventListener('dragleave', (event) => {
+        const isLeavingColumn = !column.contains(event.relatedTarget);
+        if (isLeavingColumn) {
+            column.classList.remove('drag-over');
+        }
+    });
+
+    column.addEventListener('drop', async (event) => {
+        event.preventDefault();
+        const task = {
+            id: currentDragItem.id,
+            status: column.querySelector('.subtitle').textContent
+        }
+        column.classList.remove('drag-over');
+        await putTask(task);
+        renderTasks();
+    });
+});
 
 
 //Renderizar Tareas
@@ -100,6 +128,7 @@ async function renderTasks(){
                 <p class="task-due-date">Fecha límite: ${task.endDate}</p>
                 <button class="deleteButton"></button>
                 `;
+                taskCard.id = `${task.id}`;
 
                 // Añadir evento de clic para abrir el modal de edición de la tarea
                 taskCard.addEventListener('click', function () {
@@ -118,7 +147,7 @@ async function renderTasks(){
                 });
 
                 taskCard.addEventListener('dragend', () => {
-                    currentDragItem = null;
+                    
                 });
 
                 // Añadir evento de clic para eliminar la tarea
@@ -206,19 +235,21 @@ function changeMode() {
     if (mode === "Light") {
 
         // Modo oscuro
-        document.documentElement.style.setProperty("--bar-color", "rgb(10, 44, 10)"); // Un verde más oscuro para la barra
+        document.documentElement.style.setProperty("--bar-color", "rgb(10, 44, 10)"); 
         document.documentElement.style.setProperty("--title-color", "white");
-        document.documentElement.style.setProperty("--background-color", "#121212"); // Fondo oscuro
-        document.documentElement.style.setProperty("--font-color", "white"); // Texto blanco en modo oscuro
-        document.documentElement.style.setProperty("--primary-color", "rgb(32, 102, 102)"); // Un tono más oscuro de verde-azulado
-        document.documentElement.style.setProperty("--light-background", "#1e1e1e"); // Fondo ligeramente menos oscuro
-        document.documentElement.style.setProperty("--very-light-background", "#333333"); // Fondo gris claro para contraste
-        document.documentElement.style.setProperty("--create-task-button", "rgb(12, 100, 12)"); // Botón verde oscuro
-        document.documentElement.style.setProperty("--create-task-hover", "rgb(8, 72, 8)"); // Hover más oscuro
-        document.documentElement.style.setProperty("--dark-mode-color", "yellow"); // Un gris claro para el icono del modo oscuro
-        document.documentElement.style.setProperty("--dark-mode-hover", "gold"); // Un gris medio para hover
-        document.documentElement.style.setProperty("--delete-btn-color", "darkgrey"); // Botón de eliminar gris oscuro
-        document.documentElement.style.setProperty("--delete-btn-hover", "darkred"); // Hover rojo oscuro
+        document.documentElement.style.setProperty("--background-color", "#121212"); 
+        document.documentElement.style.setProperty("--font-color", "white");
+        document.documentElement.style.setProperty("--primary-color", "rgb(32, 102, 102)");
+        document.documentElement.style.setProperty("--light-background", "#1e1e1e"); 
+        document.documentElement.style.setProperty("--very-light-background", "#333333");
+        document.documentElement.style.setProperty("--create-task-button", "rgb(12, 100, 12)");
+        document.documentElement.style.setProperty("--create-task-hover", "rgb(8, 72, 8)"); 
+        document.documentElement.style.setProperty("--dark-mode-color", "yellow");
+        document.documentElement.style.setProperty("--dark-mode-hover", "gold"); 
+        document.documentElement.style.setProperty("--delete-btn-color", "darkgrey"); 
+        document.documentElement.style.setProperty("--delete-btn-hover", "darkred"); 
+        document.documentElement.style.setProperty("--drag-over-background", "#f0f8ff");
+        document.documentElement.style.setProperty("--drag-over-border", "cyan");
 
         mode = "Dark";
     } else {
@@ -237,6 +268,8 @@ function changeMode() {
         document.documentElement.style.setProperty("--dark-mode-hover", "rgb(177, 188, 177)");
         document.documentElement.style.setProperty("--delete-btn-color", "grey");
         document.documentElement.style.setProperty("--delete-btn-hover", "red");
+        document.documentElement.style.setProperty("--drag-over-background", "#cccccc");
+        document.documentElement.style.setProperty("--drag-over-border", "#009688");
 
         mode = "Light";
     }

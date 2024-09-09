@@ -12,6 +12,8 @@
     --dark-mode-hover: rgb(177, 188, 177);
     --delete-btn-color: grey;
     --delete-btn-hover: red;
+    --drag-over-background: #b5b5b5;
+    --drag-over-border: #00d5c0;
 }
 
 body {
@@ -205,6 +207,12 @@ h1 {
 .deleteButton:hover{
     background-color: var(--delete-btn-hover);
 }
+
+.drag-over{
+    background-color: var(--drag-over-background);
+    border: 4px dashed var(--drag-over-border);
+}
+
 
 /* Estilo para pantallas medianas: wrap de columnas */
 @media (min-width: 768px) {
